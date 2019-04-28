@@ -8,17 +8,77 @@ public class FarmSim {
     int farmId;
     int customerId;
     String journey = "";
+    String colorId;
 
     FarmSim() {
 
         farmId = (int)(Math.random() * 8999 + 1000);//(int)(Math.round((Math.random() * 8999) + 1000));
         customerId = (int)(Math.random() * 8999 + 1000);//(int)(Math.round((Math.random() * 8999) + 1000));
+        colorId = randColors();
     }
 
-    FarmSim(int frmId , int custmerId) {
+    FarmSim(int frmId , int custmerId, String colorI) {
 
         farmId = frmId;
         customerId = custmerId;
+        colorId = colorI;
+    }
+
+    private String randColors() {
+
+        String out = "";
+
+        int randNum = (int)(Math.random() * 5);
+        
+        switch(randNum) {
+
+            case 0:
+                out += "red";
+                break;
+            case 1:
+                out += "purple";
+                break;
+            case 2: 
+                out += "blue";
+                break;
+            case 3:
+                out += "green";
+                break;
+            case 4: 
+                out += "yellow";
+                break;
+            case 5:     
+                out += "orange";
+                break;
+        }
+        for(int i = 0; i < 5; i++) {
+
+            randNum = (int)(Math.random() * 5);
+
+            switch(randNum) {
+
+                case 0:
+                    out += ",red";
+                    break;
+                case 1:
+                    out += ",purple";
+                    break;
+                case 2: 
+                    out += ",blue";
+                    break;
+                case 3:
+                    out += ",green";
+                    break;
+                case 4: 
+                    out += ",yellow";
+                    break;
+                case 5:     
+                    out += ",orange";
+                    break;
+            }
+        }
+
+        return out;
     }
 
     private String truck(int journeyTime) {
@@ -44,8 +104,9 @@ public class FarmSim {
     public void initJourney() {
 
         journey += "start\n";
+        journey += "ColorID:(" +colorId + ")\n";
         journey += "FarmID:(" + farmId + ")\n";
-        journey += "Shipped: (Farm)\n";
+        journey += "Shipped:(Farm)\n";
         journey += truck(180);
         journey += "Arrived:(Co-Op)\n";
         journey += "Time:(10080)\n";
