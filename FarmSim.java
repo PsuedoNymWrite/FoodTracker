@@ -21,7 +21,7 @@ public class FarmSim {
         customerId = custmerId;
     }
 
-    private void truck(int journeyTime) {
+    private String truck(int journeyTime) {
 
         int randSeed = (int)(Math.random() * 100);
         journeyTime = (int)(Math.random() * 20 + journeyTime);
@@ -37,26 +37,27 @@ public class FarmSim {
             out += ", TempFailure";
         }
 
-        out = "T" + journeyTime + out + "\n";
+        out = "Transport:(" + journeyTime + out + ")\n";
+        return out;
     }
 
     public void initJourney() {
 
         journey += "start\n";
-        journey += "FarmID: \"" + farmId + "\"\n";
-        journey += "Shipped: \"Farm\"\n";
-        truck(180);
-        journey += "Arrived: \"Co-Op\"\n";
-        journey += "Time: \"10080\"\n";
-        journey += "Shipped: \"Co-Op\"\n";
-        truck(720);
-        journey += "Arrived: \"Distributor\"\n";
-        journey += "Time: \"10080\"\n";
-        journey += "Shipped: \"Distributor\"\n";
-        truck(180);
-        journey += "Arrived: \"GenericStore\"\n";
-        journey += "Time: \"10080\"\n";
-        journey += "Bought: \"" + customerId + "\"\n";
+        journey += "FarmID:(" + farmId + ")\n";
+        journey += "Shipped: (Farm)\n";
+        journey += truck(180);
+        journey += "Arrived:(Co-Op)\n";
+        journey += "Time:(10080)\n";
+        journey += "Shipped:(Co-Op)\n";
+        journey += truck(720);
+        journey += "Arrived:(Distributor)\n";
+        journey += "Time:(10080(\n";
+        journey += "Shipped:(Distributor)\n";
+        journey += truck(180);
+        journey += "Arrived:(GenericStore)\n";
+        journey += "Time:(10080)\n";
+        journey += "Bought:(" + customerId + ")\n";
         journey += "end\n";
     }
 
